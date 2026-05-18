@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guuldoon Business Community (EA) Company Ltd</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800;900&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary:      #e85d04;
+      --primary-dark: #c44d00;
+      --navy:         #1b2a4a;
+      --navy-dark:    #0f1e35;
+      --light-bg:     #f5f5f5;
+      --white:        #ffffff;
+      --text:         #444444;
+      --text-light:   #777777;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Barlow', sans-serif; font-size: 16px; color: var(--text); line-height: 1.7; overflow-x: hidden; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    section { padding: 80px 20px; }
+    .section-tag { display: block; color: var(--primary); font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; }
+    .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(30px, 4vw, 46px); font-weight: 900; color: var(--navy); line-height: 1.1; margin-bottom: 18px; }
+    .section-desc { color: var(--text-light); font-size: 15px; line-height: 1.8; max-width: 620px; }
+    .btn { display: inline-block; padding: 14px 32px; font-family: 'Barlow', sans-serif; font-size: 15px; font-weight: 700; text-decoration: none; cursor: pointer; border: none; transition: background 0.25s, transform 0.1s; }
+    .btn:active { transform: scale(0.98); }
+    .btn-primary { background: var(--primary); color: var(--white); }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-dark { background: var(--navy); color: var(--white); }
+    .btn-dark:hover { background: var(--navy-dark); }
+    .btn-outline-dark { display: inline-block; padding: 14px 32px; font-family: 'Barlow', sans-serif; font-size: 15px; font-weight: 700; text-decoration: none; cursor: pointer; border: 2px solid var(--navy); color: var(--navy); background: transparent; transition: background 0.25s, color 0.25s; }
+    .btn-outline-dark:hover { background: var(--navy); color: var(--white); }
+    .btn-outline-white { display: inline-block; padding: 14px 32px; font-family: 'Barlow', sans-serif; font-size: 15px; font-weight: 700; text-decoration: none; cursor: pointer; border: 2px solid var(--white); color: var(--white); background: transparent; transition: background 0.25s, color 0.25s; }
+    .btn-outline-white:hover { background: var(--white); color: var(--navy); }
+    #back-to-top { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; background: var(--primary); color: white; border: none; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; z-index: 999; opacity: 0; transition: opacity 0.3s; }
+    #back-to-top.visible { opacity: 1; }
+    #back-to-top:hover { background: var(--primary-dark); }
+
+    /* ── TOPBAR ── */
+    .topbar { background: var(--navy-dark); color: #aaa; font-size: 13px; padding: 9px 0; }
+    .topbar-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+    .topbar-left { display: flex; gap: 24px; }
+    .topbar-left span { display: flex; align-items: center; gap: 7px; }
+    .topbar-left i { color: var(--primary); }
+    .topbar-right { display: flex; gap: 14px; }
+    .topbar-right a { color: #aaa; text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .topbar-right a:hover { color: var(--primary); }
+
+    /* ── NAVBAR ── */
+    nav { background: var(--white); box-shadow: 0 2px 12px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: 'Barlow Condensed', sans-serif; font-size: 26px; font-weight: 900; color: var(--navy); text-decoration: none; padding: 16px 0; display: flex; align-items: center; gap: 8px; letter-spacing: 1px; }
+    .logo i { color: var(--primary); font-size: 22px; }
+    .nav-links { display: flex; list-style: none; align-items: center; }
+    .nav-links li a { display: block; padding: 22px 18px; text-decoration: none; color: var(--navy); font-weight: 600; font-size: 15px; transition: color 0.2s, background 0.2s; }
+    .nav-links li a:hover, .nav-links li a.active { color: var(--white); background: var(--primary); }
+    .hamburger { display: none; background: none; border: none; font-size: 22px; color: var(--navy); cursor: pointer; }
+
+    /* ── HERO ── */
+    .hero { background: linear-gradient(rgba(15,30,53,0.75), rgba(15,30,53,0.75)), url('https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=1600&q=80') center/cover no-repeat; min-height: 580px; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; padding: 100px 20px 80px; }
+    .hero-tag { color: var(--primary); font-size: 14px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 16px; }
+    .hero h1 { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(46px, 8vw, 88px); font-weight: 900; color: var(--white); line-height: 1.0; margin-bottom: 20px; }
+    .hero h1 span { color: var(--primary); }
+    .hero-sub { color: #ccc; font-size: 17px; max-width: 580px; margin-bottom: 40px; line-height: 1.7; }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-bottom: 50px; }
+    .btn-outline { display: inline-block; padding: 14px 32px; font-family: 'Barlow', sans-serif; font-size: 15px; font-weight: 700; text-decoration: none; cursor: pointer; border: 2px solid var(--white); color: var(--white); background: transparent; transition: background 0.25s, color 0.25s; }
+    .btn-outline:hover { background: var(--white); color: var(--navy); }
+    .hero-track { display: flex; max-width: 580px; width: 100%; box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+    .hero-track input { flex: 1; padding: 18px 24px; font-size: 15px; border: none; font-family: 'Barlow', sans-serif; outline: none; color: var(--text); }
+    .hero-track button { background: var(--primary); color: var(--white); border: none; padding: 18px 28px; font-size: 15px; font-weight: 700; cursor: pointer; font-family: 'Barlow', sans-serif; white-space: nowrap; transition: background 0.2s; }
+    .hero-track button:hover { background: var(--primary-dark); }
+    .hero-stats { display: flex; margin-top: 50px; background: rgba(255,255,255,0.06); border-top: 1px solid rgba(255,255,255,0.1); width: 100%; max-width: 700px; }
+    .hero-stat { flex: 1; padding: 22px 10px; text-align: center; border-right: 1px solid rgba(255,255,255,0.1); }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 36px; font-weight: 900; color: var(--primary); line-height: 1; }
+    .hero-stat-label { font-size: 12px; color: #bbb; margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ── ABOUT ── */
+    .about { background: var(--white); }
+    .about .container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+    .about-img-wrap img { width: 100%; height: 420px; object-fit: cover; display: block; }
+    .about-badge { background: var(--primary); color: var(--white); text-align: center; padding: 22px 30px; font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 900; }
+    .about-badge span { display: block; font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; opacity: 0.85; margin-bottom: 4px; }
+    .about-content p { color: var(--text-light); font-size: 15px; line-height: 1.85; margin-bottom: 16px; }
+    .about-checklist { list-style: none; margin: 24px 0 32px; display: flex; flex-direction: column; gap: 12px; }
+    .about-checklist li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--text); font-weight: 600; }
+    .about-checklist li i { color: var(--primary); font-size: 18px; margin-top: 2px; flex-shrink: 0; }
+    .about-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* ── QUOTE & STATS ── */
+    .quote-section { background: var(--light-bg); padding: 0; overflow: hidden; }
+    .quote-section .container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; min-height: 460px; }
+    .quote-left { padding: 70px 60px 70px 20px; display: flex; flex-direction: column; justify-content: center; }
+    .quote-left .section-desc { margin-bottom: 40px; }
+    .quote-stats { display: flex; gap: 36px; flex-wrap: wrap; }
+    .q-stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 54px; font-weight: 900; color: var(--primary); line-height: 1; }
+    .q-stat-label { font-size: 14px; color: var(--text-light); font-weight: 600; margin-top: 4px; }
+    .quote-right { background: var(--primary); padding: 60px 40px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+    .quote-right h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 28px; font-weight: 900; color: var(--white); margin-bottom: 6px; }
+    .quote-right input, .quote-right select, .quote-right textarea { width: 100%; padding: 15px 18px; border: none; font-size: 15px; font-family: 'Barlow', sans-serif; outline: none; color: var(--text); background: var(--white); }
+    .quote-right select { cursor: pointer; }
+    .quote-right textarea { resize: none; height: 90px; }
+    .quote-right .btn-dark { width: 100%; text-align: center; padding: 18px; font-size: 16px; letter-spacing: 1px; }
+
+    /* ── STEP 6: SERVICES ── */
+    .services { background: var(--white); }
+    .services-header { text-align: center; margin-bottom: 54px; }
+    .services-header .section-desc { margin: 0 auto; }
+    .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; max-width: 1200px; margin: 0 auto; }
+    .service-card { background: var(--white); border: 1px solid #eee; transition: box-shadow 0.3s, transform 0.3s; }
+    .service-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.1); transform: translateY(-6px); }
+    .service-icon { background: var(--primary); padding: 28px 20px; display: flex; align-items: center; gap: 14px; }
+    .service-icon i { font-size: 32px; color: var(--navy); }
+    .service-icon span { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 900; color: var(--white); line-height: 1.1; }
+    .service-body { padding: 24px 20px; }
+    .service-body p { color: var(--text-light); font-size: 14px; line-height: 1.75; margin-bottom: 18px; }
+    .service-body ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .service-body ul li { font-size: 13px; color: var(--text); display: flex; align-items: flex-start; gap: 8px; }
+    .service-body ul li i { color: var(--primary); font-size: 13px; margin-top: 3px; flex-shrink: 0; }
+    .service-link { color: var(--primary); font-weight: 700; font-size: 14px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+    .service-link:hover { gap: 10px; }
+
+    /* ── STEP 7: WHY CHOOSE US ── */
+    .why { background: var(--light-bg); }
+    .why .container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+    .why-img img { width: 100%; height: 480px; object-fit: cover; display: block; }
+    .why-content p { color: var(--text-light); font-size: 15px; line-height: 1.85; margin-bottom: 28px; }
+    .why-list { list-style: none; display: flex; flex-direction: column; gap: 18px; margin-bottom: 36px; }
+    .why-list li { display: flex; align-items: flex-start; gap: 16px; }
+    .why-icon { width: 42px; height: 42px; background: var(--primary); color: var(--white); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .why-text strong { display: block; font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+    .why-text span { font-size: 14px; color: var(--text-light); }
+
+    /* ── STEP 8: PRICING ── */
+    .pricing { background: var(--white); }
+    .pricing-header { text-align: center; margin-bottom: 54px; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1000px; margin: 0 auto; }
+    .price-card { background: var(--light-bg); border: 1px solid #e8e8e8; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
+    .price-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+    .price-card.featured { background: var(--navy); border-color: var(--navy); }
+    .price-amount { padding: 30px 20px 0; }
+    .price-amount .currency { font-size: 22px; font-weight: 700; color: var(--text-light); vertical-align: top; margin-top: 10px; display: inline-block; }
+    .price-card.featured .currency { color: #aaa; }
+    .price-amount .number { font-family: 'Barlow Condensed', sans-serif; font-size: 72px; font-weight: 900; color: var(--navy); line-height: 1; }
+    .price-card.featured .number { color: var(--white); }
+    .price-amount .per { font-size: 16px; color: var(--text-light); }
+    .price-card.featured .per { color: #aaa; }
+    .price-label { background: var(--primary); padding: 14px; margin-top: 20px; }
+    .price-label h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 900; color: var(--white); letter-spacing: 1px; }
+    .price-features { padding: 28px 20px; display: flex; flex-direction: column; gap: 12px; }
+    .price-features li { list-style: none; font-size: 14px; color: var(--text-light); padding-bottom: 12px; border-bottom: 1px solid #e0e0e0; }
+    .price-card.featured .price-features li { color: #bbb; border-bottom-color: rgba(255,255,255,0.1); }
+    .price-features li:last-child { border-bottom: none; padding-bottom: 0; }
+    .price-card .btn-primary { width: calc(100% - 40px); margin: 0 20px 28px; text-align: center; display: block; }
+
+    /* ── STEP 9: TESTIMONIALS ── */
+    .testimonials { background: var(--light-bg); }
+    .testimonials-header { text-align: center; margin-bottom: 54px; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; max-width: 1200px; margin: 0 auto; }
+    .testi-card { background: var(--white); padding: 32px 28px; position: relative; border: 1px solid #eee; transition: box-shadow 0.3s; }
+    .testi-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+    .testi-card.featured { background: var(--navy); }
+    .quote-mark { font-size: 60px; color: var(--primary); opacity: 0.25; position: absolute; top: 16px; right: 20px; font-family: Georgia, serif; line-height: 1; }
+    .testi-card.featured .quote-mark { color: var(--white); }
+    .testi-author { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+    .testi-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+    .testi-name { font-weight: 700; font-size: 15px; color: var(--navy); }
+    .testi-card.featured .testi-name { color: var(--white); }
+    .testi-role { font-size: 13px; color: var(--text-light); }
+    .testi-card.featured .testi-role { color: #aaa; }
+    .testi-text { font-size: 14px; color: var(--text-light); line-height: 1.8; }
+    .testi-card.featured .testi-text { color: #ccc; }
+    .testi-stars { color: var(--primary); font-size: 14px; margin-top: 16px; }
+
+    /* ── STEP 10: FOOTER ── */
+    footer { background: var(--navy-dark); color: #aaa; }
+    .footer-top { max-width: 1200px; margin: 0 auto; padding: 70px 20px 50px; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.4fr; gap: 50px; }
+    .footer-brand .logo { color: var(--white); padding: 0; margin-bottom: 16px; display: inline-flex; }
+    .footer-brand p { font-size: 14px; line-height: 1.8; margin-bottom: 24px; color: #999; }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-socials a { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); color: #aaa; display: flex; align-items: center; justify-content: center; font-size: 14px; text-decoration: none; transition: background 0.2s, color 0.2s; border-radius: 50%; }
+    .footer-socials a:hover { background: var(--primary); color: var(--white); border-color: var(--primary); }
+    .footer-col h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 900; color: var(--primary); margin-bottom: 20px; letter-spacing: 1px; text-transform: uppercase; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links li a { color: #999; text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: color 0.2s; }
+    .footer-links li a:hover { color: var(--primary); }
+    .footer-links li a i { font-size: 10px; color: var(--primary); }
+    .footer-contact-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .footer-contact-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: #999; }
+    .footer-contact-list li i { color: var(--primary); margin-top: 3px; flex-shrink: 0; }
+    .footer-newsletter p { font-size: 14px; color: #999; margin-bottom: 18px; line-height: 1.7; }
+    .newsletter-form { display: flex; }
+    .newsletter-form input { flex: 1; padding: 13px 16px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); color: var(--white); font-family: 'Barlow', sans-serif; font-size: 14px; outline: none; }
+    .newsletter-form input::placeholder { color: #666; }
+    .newsletter-form button { background: var(--primary); color: var(--white); border: none; padding: 13px 20px; font-weight: 700; font-family: 'Barlow', sans-serif; cursor: pointer; white-space: nowrap; transition: background 0.2s; }
+    .newsletter-form button:hover { background: var(--primary-dark); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.07); }
+    .footer-bottom-inner { max-width: 1200px; margin: 0 auto; padding: 22px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-bottom p { font-size: 13px; color: #666; }
+    .footer-bottom p a { color: var(--primary); text-decoration: none; }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { font-size: 13px; color: #666; text-decoration: none; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: var(--primary); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    }
+    @media (max-width: 900px) {
+      .about .container, .why .container { grid-template-columns: 1fr; gap: 40px; }
+      .quote-section .container { grid-template-columns: 1fr; }
+      .quote-left { padding: 50px 20px 40px; }
+      .quote-right { padding: 40px 20px 50px; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
+    }
+    @media (max-width: 768px) {
+      .hamburger { display: block; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+      .nav-links.open { display: flex; }
+      .nav-links li a { padding: 14px 20px; width: 100%; }
+      .topbar-left span:last-child { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 30px; }
+    }
+    @media (max-width: 600px) {
+      .hero-btns { flex-direction: column; align-items: center; }
+      .hero-track { flex-direction: column; }
+      .hero-track input, .hero-track button { width: 100%; }
+      .hero-stats { flex-wrap: wrap; }
+      .hero-stat { min-width: 50%; }
+      .quote-stats { gap: 24px; }
+      .testi-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-container">
+      <div class="topbar-left">
+        <span><i class="fas fa-phone"></i> +254 722 744 861</span>
+        <span><i class="fas fa-envelope"></i> info@guuldooneacoltd.com</span>
+      </div>
+      <div class="topbar-right">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="logo"><i class="fas fa-globe-africa"></i> GUULDOON</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#quote" class="btn btn-primary">Get A Quote</a>
+      <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <p class="hero-tag">Integrated Infrastructure, Logistics &amp; Energy Solutions</p>
+    <h1>Building <span>East Africa's</span><br>Future Together</h1>
+    <p class="hero-sub">Kenya-based experts in logistics, civil engineering, construction, and energy infrastructure — serving East Africa and frontier markets.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn btn-primary">Our Services</a>
+      <a href="#about" class="btn-outline">About Us</a>
+    </div>
+    <div class="hero-track">
+      <input type="text" placeholder="Enter your shipment tracking ID..." />
+      <button><i class="fas fa-search"></i> Track &amp; Trace</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">23+</div><div class="hero-stat-label">Expert Team</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">130+</div><div class="hero-stat-label">Workforce</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label">Divisions</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">EA</div><div class="hero-stat-label">East Africa</div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-img-wrap">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80" alt="Guuldoon operations" />
+        <div class="about-badge"><span>Headquartered In</span>Nairobi, Kenya</div>
+      </div>
+      <div class="about-content">
+        <span class="section-tag">About Us</span>
+        <h2 class="section-title">Trusted & Integrated Services Across East Africa</h2>
+        <p>Guuldoon Business Community (EA) Company Ltd is a Kenya-based integrated services company specializing in logistics, civil engineering, construction, and energy infrastructure across East Africa and frontier markets.</p>
+        <p>Our operational footprint is based in Nairobi, with extensive project experience extending into Somalia and the broader East African region. We combine local market intelligence with regional ambition to deliver end-to-end solutions.</p>
+        <ul class="about-checklist">
+          <li><i class="fas fa-check-circle"></i> Core team of 23 highly skilled professionals</li>
+          <li><i class="fas fa-check-circle"></i> Flexible workforce of over 130 casual workers</li>
+          <li><i class="fas fa-check-circle"></i> UNGM Registered Vendor No. 1142442</li>
+          <li><i class="fas fa-check-circle"></i> Projects across Kenya, Somalia &amp; East Africa</li>
+        </ul>
+        <div class="about-btns">
+          <a href="#services" class="btn btn-primary">Our Services</a>
+          <a href="#contact" class="btn-outline-dark">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE & STATS -->
+  <div class="quote-section" id="quote">
+    <div class="container">
+      <div class="quote-left">
+        <span class="section-tag">Get A Quote</span>
+        <h2 class="section-title">Request A Free Consultation</h2>
+        <p class="section-desc">Whether you need logistics support, engineering expertise, or energy solutions — our team is ready to deliver on time and within budget across East Africa.</p>
+        <div class="quote-stats">
+          <div class="q-stat"><div class="q-stat-num">23</div><div class="q-stat-label">Skilled Experts</div></div>
+          <div class="q-stat"><div class="q-stat-num">130+</div><div class="q-stat-label">Workforce</div></div>
+          <div class="q-stat"><div class="q-stat-num">4</div><div class="q-stat-label">Divisions</div></div>
+        </div>
+      </div>
+      <div class="quote-right">
+        <h3>Get In Touch</h3>
+        <input type="text" placeholder="Your Full Name" />
+        <input type="email" placeholder="Your Email Address" />
+        <input type="tel" placeholder="Your Phone Number" />
+        <select>
+          <option value="" disabled selected>Select A Service</option>
+          <option>Logistics &amp; Transport</option>
+          <option>Engineering &amp; Construction</option>
+          <option>Energy &amp; Infrastructure</option>
+          <option>Strategic Consultancy</option>
+        </select>
+        <textarea placeholder="Tell us about your project..."></textarea>
+        <button class="btn btn-dark">Send Request</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="services-header container">
+      <span class="section-tag">Our Services</span>
+      <h2 class="section-title">Best Integrated Services in East Africa</h2>
+      <p class="section-desc">From customs clearance to construction foundations to solar installation — we are a true one-stop shop across four expert divisions.</p>
+    </div>
+    <div class="services-grid container">
+
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-truck"></i>
+          <span>Logistics &amp; Transport</span>
+        </div>
+        <div class="service-body">
+          <p>Specialized transport logistics and supply chain management — moving beyond basic freight to complex construction logistics.</p>
+          <ul>
+            <li><i class="fas fa-angle-right"></i> Customs Clearance &amp; Forwarding</li>
+            <li><i class="fas fa-angle-right"></i> Road Transportation &amp; Bulk Cargo</li>
+            <li><i class="fas fa-angle-right"></i> Warehousing &amp; Distribution</li>
+            <li><i class="fas fa-angle-right"></i> Supply Chain Management</li>
+          </ul>
+          <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-hard-hat"></i>
+          <span>Engineering &amp; Construction</span>
+        </div>
+        <div class="service-body">
+          <p>Concentrated expertise in civil and structural engineering, providing custom turnkey solutions for complex projects.</p>
+          <ul>
+            <li><i class="fas fa-angle-right"></i> Civil Infrastructure &amp; Roads</li>
+            <li><i class="fas fa-angle-right"></i> Hospitals, Schools &amp; Build Works</li>
+            <li><i class="fas fa-angle-right"></i> Revitalization &amp; Refurbishment</li>
+            <li><i class="fas fa-angle-right"></i> Public-Private Partnerships (PPPs)</li>
+          </ul>
+          <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-solar-panel"></i>
+          <span>Energy &amp; Infrastructure</span>
+        </div>
+        <div class="service-body">
+          <p>State-of-the-art solutions in energy and environment, bridging global technology with local industrial needs.</p>
+          <ul>
+            <li><i class="fas fa-angle-right"></i> Solar Power Systems (535–540Wp)</li>
+            <li><i class="fas fa-angle-right"></i> Power Distribution &amp; HV Systems</li>
+            <li><i class="fas fa-angle-right"></i> Industrial Utilities &amp; Water Treatment</li>
+            <li><i class="fas fa-angle-right"></i> Electrical, Fiber &amp; CCTV Networks</li>
+          </ul>
+          <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <i class="fas fa-chart-line"></i>
+          <span>Strategic Consultancy</span>
+        </div>
+        <div class="service-body">
+          <p>Bridging the gap between concept and execution with expert guidance, project oversight, and procurement solutions.</p>
+          <ul>
+            <li><i class="fas fa-angle-right"></i> Technical Advisory &amp; Feasibility</li>
+            <li><i class="fas fa-angle-right"></i> Monitoring &amp; Evaluation (M&amp;E)</li>
+            <li><i class="fas fa-angle-right"></i> General Supplies &amp; Procurement</li>
+            <li><i class="fas fa-angle-right"></i> Investment &amp; Market Advisory</li>
+          </ul>
+          <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="why" id="why">
+    <div class="container">
+      <div class="why-img">
+        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80" alt="Construction site" />
+      </div>
+      <div class="why-content">
+        <span class="section-tag">Why Choose Us</span>
+        <h2 class="section-title">Faster, Safe and Trusted Services Across East Africa</h2>
+        <p>Our management "Team Concept" ensures early inclusion, cost transparency, and joint controlling to eliminate project overruns. We don't just manage projects — we understand the technical specifications.</p>
+        <ul class="why-list">
+          <li>
+            <div class="why-icon"><i class="fas fa-users"></i></div>
+            <div class="why-text"><strong>Proven Regional Capacity</strong><span>23 experts and 130+ workforce handling multiple simultaneous projects across East Africa.</span></div>
+          </li>
+          <li>
+            <div class="why-icon"><i class="fas fa-cubes"></i></div>
+            <div class="why-text"><strong>Integrated One-Stop Shop</strong><span>From customs clearance to construction foundations to solar panel installation.</span></div>
+          </li>
+          <li>
+            <div class="why-icon"><i class="fas fa-cogs"></i></div>
+            <div class="why-text"><strong>Technical Competence</strong><span>We use Tier 1 global brands (Jinko, SMA, ABB, Schneider, Siemens) to guarantee output.</span></div>
+          </li>
+          <li>
+            <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="why-text"><strong>Health, Safety &amp; Compliance</strong><span>UNGM Vendor No. 1142442 | Quantum Supplier No. 2348767 | ISO Certification in progress.</span></div>
+          </li>
+          <li>
+            <div class="why-icon"><i class="fas fa-handshake"></i></div>
+            <div class="why-text"><strong>Turnkey &amp; PPP Experience</strong><span>Complex financing, design, and execution models for both private and government entities.</span></div>
+          </li>
+        </ul>
+        <a href="#contact" class="btn btn-primary">Work With Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="pricing-header container">
+      <span class="section-tag">Pricing Plan</span>
+      <h2 class="section-title">Affordable Service Packages</h2>
+      <p class="section-desc">Flexible engagement models for businesses, NGOs, and government entities of all sizes.</p>
+    </div>
+    <div class="pricing-grid container">
+
+      <div class="price-card">
+        <div class="price-amount">
+          <span class="currency">$</span><span class="number">49</span><span class="per">/Mo</span>
+        </div>
+        <div class="price-label"><h3>Basic</h3></div>
+        <ul class="price-features">
+          <li>Logistics Consultation</li>
+          <li>Supply Chain Advisory</li>
+          <li>Monthly Reporting</li>
+          <li>Email Support</li>
+        </ul>
+        <a href="#quote" class="btn btn-primary">Get Started</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-amount">
+          <span class="currency">$</span><span class="number">99</span><span class="per">/Mo</span>
+        </div>
+        <div class="price-label"><h3>Premium</h3></div>
+        <ul class="price-features">
+          <li>Full Logistics Management</li>
+          <li>Engineering Support</li>
+          <li>Weekly Reporting &amp; M&amp;E</li>
+          <li>Priority Phone Support</li>
+        </ul>
+        <a href="#quote" class="btn btn-primary">Get Started</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-amount">
+          <span class="currency">$</span><span class="number">149</span><span class="per">/Mo</span>
+        </div>
+        <div class="price-label"><h3>Business</h3></div>
+        <ul class="price-features">
+          <li>All Premium Features</li>
+          <li>Energy &amp; Solar Projects</li>
+          <li>Dedicated Project Manager</li>
+          <li>24/7 On-site Support</li>
+        </ul>
+        <a href="#quote" class="btn btn-primary">Get Started</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="testimonials-header container">
+      <span class="section-tag">Testimonial</span>
+      <h2 class="section-title">What Our Clients Say</h2>
+      <p class="section-desc">We build long-term partnerships through transparency, reliability, and results across East Africa.</p>
+    </div>
+    <div class="testi-grid container">
+
+      <div class="testi-card">
+        <div class="quote-mark">"</div>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" />
+          <div>
+            <div class="testi-name">Ahmed Hassan</div>
+            <div class="testi-role">NGO Project Director, Mogadishu</div>
+          </div>
+        </div>
+        <p class="testi-text">Guuldoon delivered our construction project on time and within budget in a very challenging environment. Their local knowledge and professional team made all the difference.</p>
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+      </div>
+
+      <div class="testi-card featured">
+        <div class="quote-mark">"</div>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" />
+          <div>
+            <div class="testi-name">Grace Wanjiku</div>
+            <div class="testi-role">Procurement Manager, Nairobi</div>
+          </div>
+        </div>
+        <p class="testi-text">Their logistics and supply chain team handled our complex multimodal cargo with precision. I trust Guuldoon completely for all our East Africa operations.</p>
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+      </div>
+
+      <div class="testi-card">
+        <div class="quote-mark">"</div>
+        <div class="testi-author">
+          <img class="testi-avatar" src="https://randomuser.me/api/portraits/men/67.jpg" alt="Client" />
+          <div>
+            <div class="testi-name">James Omondi</div>
+            <div class="testi-role">CEO, Infrastructure Firm</div>
+          </div>
+        </div>
+        <p class="testi-text">The solar installation by Guuldoon's energy division was world-class. Using Tier 1 components with professional installation — exactly what we needed for our facility.</p>
+        <div class="testi-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-top">
+
+      <div class="footer-brand">
+        <a href="#home" class="logo"><i class="fas fa-globe-africa"></i> GUULDOON</a>
+        <p>Integrated Infrastructure, Logistics &amp; Energy Solutions across East Africa and frontier markets. Partnering for excellence since day one.</p>
+        <div class="footer-socials">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#home"><i class="fas fa-angle-right"></i> Home</a></li>
+          <li><a href="#about"><i class="fas fa-angle-right"></i> About Us</a></li>
+          <li><a href="#services"><i class="fas fa-angle-right"></i> Our Services</a></li>
+          <li><a href="#pricing"><i class="fas fa-angle-right"></i> Pricing Plan</a></li>
+          <li><a href="#contact"><i class="fas fa-angle-right"></i> Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <ul class="footer-contact-list">
+          <li><i class="fas fa-map-marker-alt"></i> Diamond Plaza I, 2nd Floor, Room 15, Masari Road, 4th Parklands Ave, Nairobi</li>
+          <li><i class="fas fa-phone"></i> +254 722 744 861<br/>+254 727 788 414<br/>+254 711 451 288</li>
+          <li><i class="fas fa-envelope"></i> info@guuldooneacoltd.com</li>
+          <li><i class="fas fa-globe"></i> www.guuldooneacoltd.com</li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-newsletter">
+        <h4>Newsletter</h4>
+        <p>Stay updated on our latest projects, partnerships, and opportunities across East Africa and frontier markets.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Your Email Address" />
+          <button>Sign Up</button>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p>&copy; 2025 <a href="#">Guuldoon Business Community (EA) Company Ltd</a>. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">FAQs</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top" title="Back to top"><i class="fas fa-chevron-up"></i></button>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 300);
+    });
+    document.getElementById('back-to-top').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('.nav-links li a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+      });
+      navLinks.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
