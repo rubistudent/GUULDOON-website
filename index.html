@@ -142,6 +142,21 @@
     .service-link { color: var(--primary); font-weight: 700; font-size: 14px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
     .service-link:hover { gap: 10px; }
 
+    /* MORE SERVICES */
+    .more-services { background: var(--navy-dark); color: var(--white); }
+    .more-head { max-width: 1200px; margin: 0 auto 48px; padding: 0 20px; display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+    .more-head .section-title { color: var(--white); margin-bottom: 10px; }
+    .more-head .section-desc { color: #b4bdce; }
+    .more-grid { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 36px 28px; align-items: start; }
+    .more-group h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 800; color: var(--white); padding-bottom: 12px; margin-bottom: 16px; border-bottom: 4px solid var(--primary); }
+    .more-tiles { display: flex; flex-direction: column; gap: 14px; }
+    .more-tile { display: flex; align-items: center; gap: 16px; padding: 18px 20px; border: 2px solid var(--primary); border-radius: 10px; color: var(--white); text-decoration: none; font-family: 'Barlow Condensed', sans-serif; font-size: 21px; font-weight: 800; line-height: 1.15; transition: background 0.2s, transform 0.2s; }
+    .more-tile i { font-size: 26px; width: 34px; text-align: center; color: var(--primary); flex-shrink: 0; transition: color 0.2s; }
+    .more-tile:hover { background: var(--primary); transform: translateX(6px); }
+    .more-tile:hover i { color: var(--navy-dark); }
+    .more-tile:focus-visible { outline: 3px solid var(--white); outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) { .more-tile { transition: none; } .more-tile:hover { transform: none; } }
+
     /* WHY */
     .why { background: var(--light-bg); }
     .why .container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
@@ -260,6 +275,7 @@
     /* RESPONSIVE */
     @media (max-width: 1024px) {
       .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .more-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
     }
     @media (max-width: 900px) {
@@ -282,6 +298,7 @@
       .nav-inner .btn-primary { display: none; }
     }
     @media (max-width: 600px) {
+      .more-grid { grid-template-columns: 1fr; }
       .hero-btns { flex-direction: column; align-items: center; }
       .hero-track { flex-direction: column; }
       .hero-track input, .hero-track button { width: 100%; }
@@ -467,6 +484,49 @@
             <li><i class="fas fa-angle-right"></i> Investment &amp; Market Advisory</li>
           </ul>
           <a href="#contact" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MORE SERVICES -->
+  <section class="more-services" id="more-services">
+    <div class="more-head">
+      <div>
+        <span class="section-tag">Beyond the four divisions</span>
+        <h2 class="section-title">Supplies and services we deliver</h2>
+        <p class="section-desc">From building sites to water, sanitation and everyday goods, one team supplies and delivers it all.</p>
+      </div>
+      <a href="#quote" class="btn btn-primary">Request A Quote</a>
+    </div>
+    <div class="more-grid">
+      <div class="more-group">
+        <h3>Build &amp; power</h3>
+        <div class="more-tiles">
+          <a href="#quote" class="more-tile"><i class="fas fa-trowel-bricks"></i> Construction &amp; Civil Works</a>
+          <a href="#quote" class="more-tile"><i class="fas fa-bolt"></i> Supply of Electrical Services</a>
+        </div>
+      </div>
+      <div class="more-group">
+        <h3>Water &amp; sanitation</h3>
+        <div class="more-tiles">
+          <a href="#quote" class="more-tile"><i class="fas fa-faucet-drip"></i> Supply of Hard Water</a>
+          <a href="#quote" class="more-tile"><i class="fas fa-glass-water"></i> Supply of Drinking Water</a>
+          <a href="#quote" class="more-tile"><i class="fas fa-hand-sparkles"></i> Sanitary Services</a>
+        </div>
+      </div>
+      <div class="more-group">
+        <h3>Everyday supplies</h3>
+        <div class="more-tiles">
+          <a href="#quote" class="more-tile"><i class="fas fa-bottle-droplet"></i> Supply of Milk</a>
+          <a href="#quote" class="more-tile"><i class="fas fa-soap"></i> Supply of Bar Soap</a>
+        </div>
+      </div>
+      <div class="more-group">
+        <h3>Marketing</h3>
+        <div class="more-tiles">
+          <a href="#quote" class="more-tile"><i class="fas fa-palette"></i> Branding Services</a>
+          <a href="#quote" class="more-tile"><i class="fas fa-bullhorn"></i> Promotional Services</a>
         </div>
       </div>
     </div>
